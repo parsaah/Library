@@ -292,13 +292,15 @@ Given more time, I would consider the following improvements:
 
 ``` mermaid
 flowchart TD
-    Client[API Client] --> Controller[Controllers]
-    Controller --> Service[Services / Business Rules]
-    Service --> Repository[Repositories]
-    Repository --> DB[(PostgreSQL)]
-    Controller --> DTO[Request / Response DTOs]
-    Service --> Mapper[MapStruct Mappers]
-    Mapper --> DTO
+    Client → Controller
+    Controller → Request DTO
+    Controller → Service
+    Service → Mapper
+    Service → Repository
+    Repository → Hibernate
+    Hibernate → PostgreSQL
+    PostgreSQL → Hibernate → Repository → Service
+    Service → Response DTO → Controller → Client
 ```
 
 ## 📌 Notes
