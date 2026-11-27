@@ -292,15 +292,47 @@ Given more time, I would consider the following improvements:
 
 ``` mermaid
 flowchart TD
-    Client → Controller
-    Controller → Request DTO
-    Controller → Service
-    Service → Mapper
-    Service → Repository
-    Repository → Hibernate
-    Hibernate → PostgreSQL
-    PostgreSQL → Hibernate → Repository → Service
-    Service → Response DTO → Controller → Client
+    Client["API Client"]
+
+    subgraph Presentation["Presentation Layer"]
+        Controller["Controllers"]
+        RequestDTO["Request DTOs"]
+        ResponseDTO["Response DTOs"]
+    end
+
+    subgraph Application["Application Layer"]
+        Service["Services"]
+        Mapper["MapStruct Mappers"]
+    end
+
+    subgraph Persistence["Persistence Layer"]
+        Repository["Repositories"]
+        Entity["JPA Entities"]
+        Hibernate["JPA / Hibernate"]
+    end
+
+    DB[("PostgreSQL")]
+
+    Client -->|"HTTP Request"| Controller
+    Controller --> RequestDTO
+    Controller --> Service
+
+    Service --> Mapper
+    Mapper --> Entity
+    Mapper --> ResponseDTO
+
+    Service --> Repository
+    Repository --> Entity
+    Repository --> Hibernate
+    Hibernate --> DB
+
+    DB --> Hibernate
+    Hibernate --> Repository
+    Repository --> Service
+
+    Service --> ResponseDTO
+    ResponseDTO --> Controller
+    Controller -->|"HTTP Response"| Client
 ```
 
 ## 📌 Notes
