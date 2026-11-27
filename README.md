@@ -169,34 +169,20 @@ src
 
 ### Books
 
-  -----------------------------------------------------------------------
-  Method                  Endpoint                Description
-  ----------------------- ----------------------- -----------------------
-  `POST`                  `/api/books`            Create a book
-
-  `GET`                   `/api/books`            List, search, filter,
-                                                  paginate, and sort
-                                                  books
-
-  `GET`                   `/api/books/{id}`       Get a book by ID
-
-  `PUT`                   `/api/books/{id}`       Update title, author,
-                                                  and publication year
-
-  `DELETE`                `/api/books/{id}`       Soft-delete a book
-  -----------------------------------------------------------------------
+| Method | Endpoint | Description |
+|---|---|---|
+| `POST` | `/api/books` | Create a book |
+| `GET` | `/api/books` | List, search, filter, paginate, and sort books |
+| `GET` | `/api/books/{id}` | Get a book by ID |
+| `PUT` | `/api/books/{id}` | Update title, author, and publication year |
+| `DELETE` | `/api/books/{id}` | Soft-delete a book |
 
 ### Borrowing
 
-  ----------------------------------------------------------------------------------
-  Method                  Endpoint                           Description
-  ----------------------- ---------------------------------- -----------------------
-  `POST`                  `/api/books/{bookId}/borrowings`   Borrow an available
-                                                             book
-
-  `PUT`                   `/api/books/{bookId}/return`       Return a currently
-                                                             borrowed book
-  ----------------------------------------------------------------------------------
+| Method | Endpoint | Description |
+|---|---|---|
+| `POST` | `/api/books/{bookId}/borrowings` | Borrow an available book |
+| `PUT` | `/api/books/{bookId}/return` | Return a currently borrowed book |
 
 ### Query Parameters
 
